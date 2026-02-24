@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Hobby Website</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* HOVER EFFECTS FOR HOBBY BOXES */
+        .flex-hobbies {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .hobby-box {
+            background: rgba(122,0,0,0.75);
+            padding: 15px;
+            border-radius: 12px;
+            flex: 1 1 250px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .hobby-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 120, 120, 0.6);
+        }
+
+        /* QUOTE BOX */
+        .quote-box {
+            margin-top: 30px;
+            text-align: center;
+            padding: 15px 20px;
+            font-style: italic;
+            background: rgba(122,0,0,0.85);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255,120,120,0.5);
+        }
+
+        /* SIDE COLUMNS DECOR */
+        .side-column img {
+            display: block;
+            margin: 10px auto;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(255, 120, 120, 0.5);
+        }
+
+        /* FORM STYLING */
+        .side-column form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .side-column form input[type="radio"],
+        .side-column form input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        .side-column p em {
+            display: block;
+            text-align: center;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: #ffdada;
+        }
+
+        /* SECTION SEPARATOR */
+        .topic-sep {
+            margin: 50px 0;
+            position: relative;
+            height: 50px;
+        }
+        .topic-sep::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #ffb3b3, transparent);
+        }
+        .topic-sep span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 8px 20px;
+            background: rgba(122,0,0,0.9);
+            border-radius: 999px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 0 15px rgba(255,120,120,0.6);
+        }
+    </style>
+</head>
+<body>
+
+<div class="decor-left"><img src="images/left-decor.jpg"></div>
+<div class="decor-right"><img src="images/right-decor.jpg"></div>
+
+
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="hobby1.html">Series</a></li>
+        <li><a href="hobby2.html">Sports</a></li>
+        <li><a href="minigame.html">Mini Game</a></li>
+    </ul>
+</nav>
+<div class="container page-grid">
+
+    <!-- LEFT SIDE -->
+    <div class="side-column">
+        <h3>Website</h3>
+        <img src="img16.jpg" alt="decor gif" width="200" height="260">
+        <img src="img6.jpg" alt="decor gif" width="200" height="260">
+        <img src="img15.jpg" alt="decor gif" width="200" height="260">
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <h1>Welcome to My Hobby Website</h1>
+        <p>
+            Hello, my name is <strong>Mantra Pongchanasit</strong>.
+            This website showcases two hobbies that have played an important role in my life:
+            watching series and anime, and participating in sports.
+            Both hobbies help me grow in different ways—one mentally and emotionally,
+            the other physically and mentally.
+        </p>
+
+        <div class="topic-sep"><span>Experience</span></div>
+
+        <p>
+            Over time, I discovered that hobbies are more than just activities to pass time.
+            Watching series helped me understand emotions, storytelling, and different perspectives,
+            while sports taught me discipline, consistency, and mental strength.
+            These experiences helped shape how I think, feel, and handle challenges.
+        </p>
+
+        <div class="topic-sep"><span>My Hobbies</span></div>
+
+        <div class="flex-hobbies">
+
+            <!-- HOBBY 1 -->
+            <div class="hobby-box">
+                <h3>Watching Series & Anime</h3>
+                <p>
+                    Through series and anime, I’ve learned to appreciate storytelling,
+                    character development, and emotional depth.
+                    This hobby gives me quiet time to reflect and relax,
+                    while also inspiring creativity and empathy.
+                </p>
+                <a href="hobby1.html">Explore Experience →</a>
+            </div>
+
+            <!-- HOBBY 2 -->
+            <div class="hobby-box">
+                <h3>Sports</h3>
+                <p>
+                    Sports challenge me physically and mentally.
+                    Training and practice taught me patience, discipline,
+                    and how to push past my limits.
+                    This hobby helps me stay healthy and focused in daily life.
+                </p>
+                <a href="hobby2.html">Explore Experience →</a>
+            </div>
+
+        </div>
+
+        <div class="quote-box">
+            “My hobbies are where I grow quietly, learning about myself through experience.”
+        </div>
+    </main>
+
+    <!-- RIGHT SIDE -->
+    <div class="side-column">
+        <h3>🎬 Choose a Series Mood</h3>
+
+        <form>
+            <label>
+                <input type="radio" name="mood"> Emotional Drama
+            </label>
+            <label>
+                <input type="radio" name="mood"> Light Comedy
+            </label>
+            <label>
+                <input type="radio" name="mood"> Psychological Thriller
+            </label>
+            <label>
+                <input type="radio" name="mood"> Fantasy World
+            </label>
+        </form>
+
+        <p><em>How I decide what to watch.</em></p>
+
+        <h3>⚽ Today’s Training</h3>
+
+        <form>
+            <label><input type="checkbox"> Warm-up</label>
+            <label><input type="checkbox"> Strength</label>
+            <label><input type="checkbox"> Focus drills</label>
+            <label><input type="checkbox"> Cool down</label>
+        </form>
+
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe9sWCwXB_i8ddmnko79pKvAenh2tO2okCKQ&s" alt="decor gif" width="200" height="100">
+        <p><em>Each session builds discipline.</em></p>
+        <img src="img12.jpg" alt="decor gif" width="200" height="100">
+    </div>
+
+</div>
+
+</body>
+</html>

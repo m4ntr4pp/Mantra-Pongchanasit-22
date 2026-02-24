@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Click Challenge</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #2a0000, #600000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+.container {
+    text-align: center;
+    background: rgba(0,0,0,0.45);
+    padding: 60px 50px;
+    border-radius: 25px;
+    box-shadow: 0 0 25px #990000, 0 0 60px #550000;
+    width: 520px;
+    position: relative;
+}
+
+h1 {
+    text-shadow: 0 0 12px red;
+}
+
+#score, #highScore, #timer {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+#feedback {
+    height: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+#clickBtn {
+    background-color: #990000;
+    color: white;
+    padding: 25px 45px;
+    font-size: 24px;
+    box-shadow: 0 0 20px red;
+    transition: 0.2s;
+}
+
+#clickBtn:hover {
+    background-color: #660000;
+    box-shadow: 0 0 35px red;
+}
+
+#clickBtn:active {
+    transform: scale(0.95);
+}
+
+.controls {
+    margin-top: 25px;
+}
+
+.start-btn, .reset-btn, .home-btn {
+    background: white;
+    color: #7a0000;
+    padding: 10px 20px;
+    margin: 8px;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+
+.popup {
+    background: #1a0000;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px red;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🔥 Click Challenge 🔥</h1>
+    <p>Click as many times as you can in 10 seconds!</p>
+
+    <div id="score">Score: 0</div>
+    <div id="highScore">High Score: 0</div>
+    <div id="timer">Time Left: 10</div>
+    <div id="feedback"></div>
+
+    <button id="clickBtn">CLICK ME!</button>
+
+    <div class="controls">
+        <button class="start-btn" onclick="startGame()">Start</button>
+        <button class="reset-btn" onclick="resetGame()">Reset</button>
+        <button class="home-btn" onclick="goHome()">Home</button>
+    </div>
+
+    <div class="overlay" id="overlay">
+        <div class="popup">
+            <h2>⏰ Time's Up!</h2>
+            <p id="finalScore"></p>
+            <button class="start-btn" onclick="startGame()">Replay</button>
+            <button class="home-btn" onclick="goHome()">Home</button>
+        </div>
+    </div>
+</div>
+
+<script>
+let score = 0;
+let timeLeft = 10;
+let gameActive = false;
+let timer;
+
+const scoreDisplay = document.getElementById("score");
+const highScoreDisplay = document.getElementById("highScore");
+const timerDisplay = document.getElementById("timer");
+const feedback = document.getElementById("feedback");
+const clickBtn = document.getElementById("clickBtn");
+const overlay = document.getElementById("overlay");
+const finalScore = document.getElementById("finalScore");
+
+let highScore = localStorage.getItem("highScore") || 0;
+highScoreDisplay.textContent = "High Score: " + highScore;
+
+clickBtn.addEventListener("click", () => {
+    if (!gameActive) return;
+    score++;
+    scoreDisplay.textContent = "Score: " + score;
+
+    if (score % 10 === 0) {
+        feedback.textContent = "🔥 Great Clicking!";
+    }
+});
+
+function startGame() {
+    score = 0;
+    timeLeft = 10;
+    gameActive = true;
+
+    scoreDisplay.textContent = "Score: 0";
+    timerDisplay.textContent = "Time Left: 10";
+    feedback.textContent = "";
+    timerDisplay.style.color = "white";
+
+    overlay.style.display = "none";
+    clickBtn.style.pointerEvents = "auto";
+
+    clearInterval(timer);
+
+    timer = setInterval(() => {
+        timeLeft--;
+        timerDisplay.textContent = "Time Left: " + timeLeft;
+
+        if (timeLeft <= 3) {
+            timerDisplay.style.color = "red";
+            feedback.textContent = "⚠ Hurry up!";
+        }
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            endGame();
+        }
+    }, 1000);
+}
+
+function endGame() {
+    gameActive = false;
+    clickBtn.style.pointerEvents = "none";
+
+    if (score > highScore) {
+        highScore = score;
+        localStorage.setItem("highScore", highScore);
+        highScoreDisplay.textContent = "High Score: " + highScore;
+        feedback.textContent = "🏆 NEW HIGH SCORE!";
+    }
+
+    finalScore.textContent = "Your final score is " + score + " clicks!";
+    overlay.style.display = "flex";
+}
+
+function resetGame() {
+    clearInterval(timer);
+    gameActive = false;
+    score = 0;
+    timeLeft = 10;
+
+    scoreDisplay.textContent = "Score: 0";
+    timerDisplay.textContent = "Time Left: 10";
+    timerDisplay.style.color = "white";
+    feedback.textContent = "";
+    overlay.style.display = "none";
+}
+
+function goHome() {
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
